@@ -1,0 +1,41 @@
+Emit: this method is sending the messages.it will pass the 2 paramaters. first is the event and function or object
+
+there are 2 ways to communicate
+1.client to server
+2.server to client
+
+
+1.client to server
+    steps to follow:
+     i) client: 
+        socket.emit("ping",{
+         message:"Hi Friend"
+        })
+      ii)server: it will put in inside the connection
+            socket.on("ping",(data)=>{
+            console.log(data,": from the ping event in client side")
+            })
+2.server to client:
+  
+    methods:
+      socket.emit("message","this is a test")
+
+      //sending to all clients,include sender(socketid)
+      io.emit('message',"this is a test")
+
+      //sending the all clients except sender
+      socket.broadcast.emit('message',"this is a test")
+
+      //sending to clients in "game" room(channel) except sender
+      socket.broadcast.to('game').emit('message','nice game');
+
+      //sending to clients in "game" room(channel), include sender
+      io.in('game').emit('message','cool game');
+
+      //sending to sender client, only if they are in "game" room(channel)
+      socket.to('game').emit('message','enjoy the game');
+
+      //sending to individual socketid
+      socket.broadcast.to(socket.id).emit('message',"for your eyes only");
+
+

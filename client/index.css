@@ -1,0 +1,25 @@
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+h2{
+    font-weight:100;
+}
+
+nav{
+    text-align:center;
+    background-color: blueviolet;
+    padding:10px;
+    color:white;
+}
+.container{
+    max-width:1000px;
+    margin:100px 0 50px;
+    padding:20px;
+}
+.chatbox{
+    height:500px
+}
