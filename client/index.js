@@ -1,4 +1,4 @@
-console.log("hii")
+// console.log("hii")
 
 const socket = io("http://localhost:5050")
 
@@ -6,8 +6,12 @@ const messageBox=document.querySelector(".chatbox form")
 const messageList=document.querySelector("#messagelist")
 const chatboxinput=document.querySelector(".chatbox input")
 const userList=document.querySelector("ul#users")
+const useraddform=document.querySelector(".modal")
+const backdrop=document.querySelector(".backdrop")
+const useraddinput=document.querySelector(".modal input")
 
-const messages=[]
+let messages=[];
+let users=[];
  
 //socket list
 socket.on("message_client",(message)=>{
@@ -15,8 +19,14 @@ socket.on("message_client",(message)=>{
     updateMessage()
 })
 
+socket.on("users",(user)=>{
+    users=user;
+    updateUsers()
+})
+
 // event listeners
 messageBox.addEventListener("submit",submitHandler)
+useraddform.addEventListener("submit",userAddHandler)
 
 function submitHandler(e){
     e.preventDefault();
@@ -26,10 +36,8 @@ function submitHandler(e){
      if(!message){
         return alert("message is empty")
      }
-     else {
-        socket.emit("message",message)
+      socket.emit("message",message)
         chatboxinput.value=""
-     }
 }
 
 function updateMessage(){
@@ -38,6 +46,7 @@ function updateMessage(){
     for(let i=0;i<messages.length;i++){
         messageList.innerHTML += `
         <li>
+         <p>${messages[i].user}</p>
          <p>${messages[i].message}</p>
         </li>
         `
@@ -45,6 +54,31 @@ function updateMessage(){
    
 }
 
+function userAddHandler(e){
+    e.preventDefault();
+
+    let username=useraddinput.value;
+    
+    if(!username){
+        return alert("You must add a user name")
+    }
+    socket.emit("adduser",username)
+
+    useraddform.classList.add("disappear")
+    backdrop.classList.add("disappear")
+}
+
+function updateUsers(){
+    userList.textContent="";
+
+    for(let i=0;i<users.length;i++){
+        let node=document.createElement("LI")
+        let textnode=document.createTextNode(users[i]);
+        node.appendChild(textnode)
+        userList.appendChild(node)
+
+    }
+}
 // //emit is doing the sending the messages
 // //client to server
 // socket.emit("ping",{
