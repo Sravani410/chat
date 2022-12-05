@@ -34,6 +34,7 @@ server.listen(PORT,()=>{
 const users=[];
 
 io.on("connection",(socket)=>{
+
    console.log('connected to:',socket.id)  //this was in client(browser) side
    
     socket.on("adduser",(username)=>{
@@ -44,10 +45,8 @@ io.on("connection",(socket)=>{
     socket.on("message",(message)=>{
         // console.log(message)
         io.sockets.emit("message_client",{
-            
             message: message,
             user:socket.user
-           
         })
     }) 
     socket.on("disconnect",()=>{
