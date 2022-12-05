@@ -33,15 +33,23 @@ server.listen(PORT,()=>{
 
 io.on("connection",(socket)=>{
    console.log('connected to',socket.id)  //this was in client(browser) side
-   //here ping is from the client side--> communication between client to server
-   socket.on("ping",(data)=>{
-     console.log(data,": from the ping event in client side")
-   })
+   
+    socket.on("message",(message)=>{
+        // console.log(message)
+        io.sockets.emit("message_client",{
+            message: message
+        })
+    }) 
 
-   //server to client
-   io.sockets.emit("message",{
-    message:"how are you"
-   })
+//    //here ping is from the client side--> communication between client to server
+//    socket.on("ping",(data)=>{
+//      console.log(data,": from the ping event in client side")
+//    })
+
+//    //server to client
+//    io.sockets.emit("message",{
+//     message:"how are you"
+//    })
 
 })
 
