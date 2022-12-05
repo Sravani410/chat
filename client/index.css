@@ -9,12 +9,6 @@ h2{
     font-weight:100;
 }
 
-nav{
-    text-align:center;
-    background-color: blueviolet;
-    padding:10px;
-    color:white;
-}
 .container{
     max-width:1000px;
     margin:100px 0 50px;
@@ -24,20 +18,20 @@ nav{
     height:500px;
     list-style:none;
     display:flex;
-    flex-flow: none;
+    flex-flow: column;
     background:white;
     border-radius:6px;
     box-shadow:1px 0px 10px whitesmoke
 }
-#messagelist{
+#messageList{
     flex:1;
     overflow-y:scroll;
 }
-#messagelist p:first-child{
+#messageList p:first-child{
     color:purple;
 }
 
-form.Input{
+/* form.Input{
     display:flex;
 }
 form.Input input{
@@ -52,7 +46,8 @@ form.Input button{
     flex:1;
     color:white;
     cursor:pointer;
-}
+} */
+
 #users{
     list-style: none;
     display:flex;
@@ -62,6 +57,7 @@ form.Input button{
     flex-flow:row;
     padding-top:20px;
 }
+
 #users li{
     min-width:100px;
     max-height:20px;
@@ -70,6 +66,7 @@ form.Input button{
     text-align:center;
     box-shadow:0px 2px 10px #eee
 }
+
 .backdrop{
     background:black;
     position:fixed;
@@ -79,16 +76,4 @@ form.Input button{
     top:0;
     cursor:pointer;
 }
-.modal.disappear{
-    display:none;
-}
-.backdrop.disappear{
-    display:none;
-}
-.modal{
-    width:60%;
-    max-width:500px;
-    min-height:200px;
-    background:white;
-    position:fixed;
-}
+

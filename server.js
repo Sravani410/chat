@@ -28,12 +28,11 @@ server.listen(PORT,()=>{
 
 //here socket parameter is unique to the server
 
-// socket. emit - This method is responsible for sending messages.
-// socket. on - This method is responsible for listening for incoming messages.
+// socket.emit - This method is responsible for sending messages.
+// socket.on - This method is responsible for listening for incoming messages.
 
 io.on("connection",(socket)=>{
    console.log('connected to',socket.id)  //this was in client(browser) side
-
    //here ping is from the client side--> communication between client to server
    socket.on("ping",(data)=>{
      console.log(data,": from the ping event in client side")
