@@ -52,7 +52,7 @@ io.on("connection",(socket)=>{
     socket.on("disconnect",()=>{
         console.log("we are disconnecting:",socket.user)
         if(socket.user){
-            users.splice(users.indexOf(socket.user),1)
+            users.splice(users.indexOf(socket.user),2)
         }
         io.sockets.emit("users:",users)
         console.log("remaining the users:",users)

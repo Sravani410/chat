@@ -19,8 +19,8 @@ socket.on("message_client",(message)=>{
     updateMessage()
 })
 
-socket.on("users",(user)=>{
-    users=user;
+socket.on("users",(_users)=>{
+    users=_users;
     updateUsers()
 })
 
